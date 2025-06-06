@@ -44,9 +44,9 @@ class md_gen():
                 self.f.close()
                 self.file_media_count = 0
                 self.file_count += 1
-                if self.has_likes:
-                    new_filename = f'{self.save_path}/{self.screen_name}-{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_{self.file_count}.md'
-                elif 'retweet' in prefix:
+                #if self.has_likes:
+                #    new_filename = f'{self.save_path}/{self.screen_name}-{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_{self.file_count}.md'
+                if 'retweet' in prefix:
                     new_filename = f'{self.save_path}/{self.screen_name}-{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_{self.file_count}_{self.current_tweet_info[2]}.md'
                 else:
                     new_filename = f'{self.save_path}/{self.screen_name}-{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_{self.file_count}_{currentDate}.md'
@@ -55,7 +55,7 @@ class md_gen():
                 self.f.write(f"Tweet Range: {self.tweet_range}\n")
                 self.f.write(f"Save Path: {self.save_path}\n\n")
 
-            if not self.has_likes and 'retweet' not in prefix and currentDate != self.current_tweet_info[2]:
+            if 'retweet' not in prefix and currentDate != self.current_tweet_info[2]:
                 self.f.write(f'## {currentDate}\n') # 输出 年月 标题
                 self.current_tweet_info[2] = currentDate
 
