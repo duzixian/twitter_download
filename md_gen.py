@@ -1,14 +1,19 @@
 import time
 import re
 from datetime import datetime
+import os
 
 class md_gen():
     def __init__(self, save_path:str, user_name, screen_name, tweet_range, has_likes, media_count_limit) -> None:
-        self.f = open(f'{save_path}/{screen_name}-{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_1.md', 'w', encoding='utf-8-sig', newline='')
-        self.f.write(f"{user_name} {screen_name}\n")
-        self.f.write(f"Tweet Range: {tweet_range}\n")
-        self.f.write(f"Save Path: {save_path}\n")
-        
+        self.file_path = os.path.join(save_path, f"{screen_name}.md")
+        file_exists = os.path.exists(self.file_path)
+        mode = 'a' if file_exists else 'w'
+        self.f = open(self.file_path, mode, encoding='utf-8-sig', newline='')
+        if not file_exists:
+            self.f.write(f"{user_name} {screen_name}\n")
+            self.f.write(f"Tweet Range: {tweet_range}\n")
+            #self.f.write(f"Save Path: {save_path}\n")
+            
         self.save_path = save_path
         self.user_name = user_name
         self.screen_name = screen_name
