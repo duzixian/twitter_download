@@ -325,6 +325,7 @@ def get_download_url(_user_info):
 def download_control(_user_info):
     async def _main():
         async def down_save(url, prefix, csv_info, order: int):
+            origin_url = url
             file_name_ = basename(urlsplit(url)[2]).rsplit(".")[0]
             if '.mp4' in url:
                 _file_name = f'{_user_info.save_path + os.sep}{prefix.replace(" ","_")}.{file_name_}.mp4'
@@ -368,6 +369,8 @@ def download_control(_user_info):
                         md_file.media_tweet_input(csv_info, prefix)
                     if log_output:
                         print(f'{_file_name}=====>下载完成')
+                    if down_log:
+                        cache_data.add(origin_url)
 
                     break
                 except Exception as e:
