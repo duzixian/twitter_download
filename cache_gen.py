@@ -21,12 +21,11 @@ class cache_gen():
         with open(self.cache_path, 'wb') as f:
             pickle.dump(self.cache_data, f)
 
-
     def is_present(self, element):
         if element in self.cache_data:
             return False
         else:
-            self.add(element)
+            #self.add(element)
             return True
 
 
