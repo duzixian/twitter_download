@@ -18,6 +18,9 @@ class cache_gen():
 
     def add(self, element):
         self.cache_data.add(element)
+        with open(self.cache_path, 'wb') as f:
+            pickle.dump(self.cache_data, f)
+
 
     def is_present(self, element):
         if element in self.cache_data:
