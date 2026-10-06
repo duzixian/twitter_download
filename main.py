@@ -377,7 +377,7 @@ def download_control(_user_info):
                     print(e)
                     if '.mp4' in url or orig_format or str(e) != "404":
                         count += 1
-                        if count >= 50:
+                        if count >= 5:
                             print(f'{_file_name}=====>第{count}次下载失败，已跳过该文件。')
                             #print(url)
                             break
